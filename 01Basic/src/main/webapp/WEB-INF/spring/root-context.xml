@@ -9,4 +9,12 @@
 	
 	
 	<context:component-scan base-package="com.test.app.domain.dto" />
+	
+	<bean id="memoDto2" class="com.test.app.domain.dto.MemoDto">
+		<constructor-arg name="id" value="123" />
+		<constructor-arg name="text" value="OGU" />
+	
+	</bean>
+	
+	
 </beans>
