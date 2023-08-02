@@ -1,5 +1,7 @@
 package com.test.app.domain.dto;
 
+import javax.validation.constraints.Min;
+
 import org.springframework.stereotype.Component;
 
 import lombok.AllArgsConstructor;
@@ -12,8 +14,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Component
 @Builder
+
 public class MemoDto {
-	private int id = 111;
-	private String text = "오구";
+	
+	@Min(value=10,message="최소 숫자는 10이상 이어야합니다.")
+	private int id;
+	private String text;
 	private String writer;
+
 }
