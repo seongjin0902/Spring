@@ -18,8 +18,12 @@
 		<property name="username" value="root"></property>
 		<property name="password" value="1234"></property>
 	</bean> -->
-	<context:component-scan base-package="com.test.app"/>
+<!-- 	<context:component-scan base-package="com.test.app"/> -->
 	<context:component-scan base-package="com.test.app.domain.service"/>
 	
 	<mybatis-spring:scan base-package="com.test.app.domain.mapper"/>
+	
+	
+	
+	
 </beans>
