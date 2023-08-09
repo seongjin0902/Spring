@@ -12,9 +12,11 @@
 
 	<div class="showMemo">
 		<c:forEach items="${list }" var="dto">
-			<a href="javascript:void(0)" class="memo">
-				<span>${dto.id }</span>&nbsp;&nbsp;<span>${dto.text }</span><br />
+			<a href="javascript:void(0)" class="memo"> 
+				<span>${dto.id }</span>&nbsp;&nbsp;<span>${dto.text }</span>
 			</a>
+			&nbsp;&nbsp;&nbsp;
+			<a href="javascript:void(0)" class="cancel" data-id="${dto.id}">X</a><br/>
 		</c:forEach>
 	</div>
 	<hr>
@@ -65,11 +67,11 @@
 			
 			axios.post("http://localhost:8080/app/memo/add", params, header)
 			.then(response => {
-				alert("memo add 성공 ^_^", response);
+				alert("memo add 성공 🐧🐧", response);
 				location.reload();
 			})
 			.catch(error => {
-				alert("memo add 실패ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ", error)
+				alert("memo add 실패 💩💩", error)
 			});
 		})
 		
@@ -87,9 +89,69 @@
 			})
 		})
 		
+		
+// 		----------------02 업데이트 요청하기-------------------------------
+		const update_btn_el = document.querySelector(".update_btn");
+		update_btn_el.addEventListener('click',function(){
+			console.log("update_btn_el clicked..");
+		
+			const updateArea_el = document.update_form.updateArea;
+			const updateId_el = document.update_form.updateId;
+			
+			console.log("area's value",updateArea_el.value)
+		
+// 			요청 헤더 타입 지정
+			const header = {
+				headers:{
+					"Context-Type": "application/json"
+				}
+			}
+			
+// 			파라미터
+			const params = {
+				id : updateId_el.value,
+				text: updateArea_el.value
+			}
+			
+			axios.put("http://localhost:8080/app/memo/put2", params, header)
+			.then(response => {
+				alert("memo Update 성공 🐧🐧", response);
+				location.reload();
+			})
+			.catch(error => {
+				alert("memo Update 실패 💩💩", error)
+			});
+		})
+		
+// 		--------------------------03 delete------------------------(http://localhost:8080/app/memo/remove/{id})
+// 		1) .cancel Els 가져오기
+		const cancel_els = document.querySelectorAll('.cancel')
+		cancel_els.forEach((cancel_el) => {
+			
+			cancel_el.addEventListener('click',function(){
+				const id = cancel_el.getAttribute('data-id');
+				console.log("remove id : " + id);
+				
+				axios.delete("http://localhost:8080/app/memo/remove/" + id)
+				.then(response =>{
+					location.reload();
+				})
+				.patch(error => {
+					console.log(error);});
+				
+				
+			})
+			
+		})
+
+
+
+
+
+
+
+
 	</script>
-
-
 
 
 </body>
