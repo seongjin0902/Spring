@@ -52,7 +52,6 @@
 			console.log("area's value",postArea_el.value)
 			
 
-			
 // 			요청 헤더 타입 지정
 			const header = {
 				headers:{
