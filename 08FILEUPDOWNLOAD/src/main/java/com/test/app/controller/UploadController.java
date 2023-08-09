@@ -44,7 +44,7 @@ public class UploadController {
 		{
 			System.out.println("-----------------------");
 			System.out.println("FILE NAME : " + file.getOriginalFilename());
-			System.out.println("FILE SIZE : " + (double)file.getSize()/1000 + " MB");
+			System.out.println("FILE SIZE : " + String.format("%.2f",(double)file.getSize()/1024) + " MB");
 			System.out.println("-----------------------");
 			
 //			파일명 추출
@@ -72,9 +72,9 @@ public class UploadController {
 			{
 				System.out.println("FILE : " + file);
 			}
-				
 
 		}
+		model.addAttribute("rootDir",root);
 		
 	}
 	
