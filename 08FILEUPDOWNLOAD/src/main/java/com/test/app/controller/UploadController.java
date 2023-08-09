@@ -64,7 +64,7 @@ public class UploadController {
 		for(File dir : uuidDirs)
 		{
 			System.out.println("----------------------------------------------------------");
-			System.out.println("FOLDER : " + dir);
+			System.out.println("뽈더 : " + dir);
 			System.out.println("----------------------------------------------------------");
 			
 			File subDir = new File(dir.getPath());
