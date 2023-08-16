@@ -10,6 +10,13 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.test.app.config.auth.CustomAccessDeniedHandler;
+import com.test.app.config.auth.CustomAuthenticationEntryPoint;
+import com.test.app.config.auth.CustomAuthenticationFailureHandler;
+import com.test.app.config.auth.CustomLoginSuccessHandler;
+import com.test.app.config.auth.CustomLogoutHandler;
+import com.test.app.config.auth.CustomLogoutSuccessHandler;
+
 //security-context.xml 설정 내용
 
 @Configuration
@@ -27,16 +34,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		http 
 			.authorizeRequests()
-				.antMatchers("/","/public").permitAll()
+				.antMatchers("/","/public","/login").permitAll()
 				.antMatchers("/user").hasRole("USER")		//ROLE_USER
 				.antMatchers("/member").hasRole("MEMBER")		//ROLE_MEMBER
 				.antMatchers("/admin").hasRole("ADMIN")		//ROLE_ADMIN
 				.anyRequest().authenticated()				//나머지  URL은 모두 인증작업이 완료된 이후 접근
 			.and()
 			.formLogin()
+			.loginPage("/login")
+			.successHandler(new CustomLoginSuccessHandler())// ROLE_USER -> user페이지 / ROLE_MEMBER -> member페이지
+			.failureHandler(new CustomAuthenticationFailureHandler())
+			
 			.and()
-			.logout();
-
+			
+			.logout()
+			.logoutUrl("/logout")
+			.permitAll()
+			.addLogoutHandler(new CustomLogoutHandler())	//세션초기화
+			.logoutSuccessHandler(new CustomLogoutSuccessHandler());	//기본위치로 페이지이동
+		
+		http
+			.exceptionHandling()
+			.authenticationEntryPoint(new CustomAuthenticationEntryPoint())			//인증이 필요한 자원에 접근 예외처리
+			.accessDeniedHandler(new CustomAccessDeniedHandler());					//권한 실패 예외처리
 		
 	}
 	
