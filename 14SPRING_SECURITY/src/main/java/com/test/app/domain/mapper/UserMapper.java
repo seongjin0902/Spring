@@ -1,13 +1,18 @@
 package com.test.app.domain.mapper;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import com.test.app.domain.dto.UserDto;
 
 @Mapper
-public class UserMapper {
-
+public interface UserMapper {
+	
+	@Insert("insert into tbl_user values(#{},#{},#{},#{})")
 	public int insert(UserDto dto);
 	
-	public UserDto selectAt();
+	@Select("select * from tbl_user where username=#{username}")
+	public UserDto selectAt(@Param("username") String username);
 }
