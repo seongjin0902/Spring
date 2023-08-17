@@ -16,6 +16,7 @@ import com.test.app.config.auth.CustomAuthenticationFailureHandler;
 import com.test.app.config.auth.CustomLoginSuccessHandler;
 import com.test.app.config.auth.CustomLogoutHandler;
 import com.test.app.config.auth.CustomLogoutSuccessHandler;
+import com.test.app.config.auth.PrincipalDetailsService;
 
 //security-context.xml 설정 내용
 
@@ -63,21 +64,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 //	인증처리 함수 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth
-			.inMemoryAuthentication()
-				.withUser("user")
-				.password(passwordEncoder.encode("1234"))
-				.roles("USER");
-		auth
-			.inMemoryAuthentication()
-				.withUser("member")
-				.password(passwordEncoder.encode("1234"))
-				.roles("MEMBER");
-		auth
-			.inMemoryAuthentication()
-				.withUser("admin")
-				.password(passwordEncoder.encode("1234"))
-				.roles("ADMIN");
+//		auth
+//			.inMemoryAuthentication()
+//				.withUser("user")
+//				.password(passwordEncoder.encode("1234"))
+//				.roles("USER");
+//		auth
+//			.inMemoryAuthentication()
+//				.withUser("member")
+//				.password(passwordEncoder.encode("1234"))
+//				.roles("MEMBER");
+//		auth
+//			.inMemoryAuthentication()
+//				.withUser("admin")
+//				.password(passwordEncoder.encode("1234"))
+//				.roles("ADMIN");
+		
+		auth.userDetailsService(new PrincipalDetailsService())
+			.passwordEncoder(passwordEncoder);
 	}
 	
 	
