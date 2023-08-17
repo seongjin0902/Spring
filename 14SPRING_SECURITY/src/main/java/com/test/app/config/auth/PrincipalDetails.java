@@ -16,27 +16,25 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PrincipalDetails implements UserDetails{
-	
-	
 	private UserDto user;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		Collection<GrantedAuthority> collection = new ArrayList();
 		
-		collection.add(new GrantedAuthority() {
+		collection.add(new GrantedAuthority(){
 			@Override
 			public String getAuthority() {
 				return user.getRole();
 			}
-			
-		});
-		return null;
+	
+		} );
+		
+		return collection;
 	}
 
 	@Override
 	public String getPassword() {
-		// TODO Auto-generated method stub
 		return user.getPassword();
 	}
 
@@ -69,4 +67,5 @@ public class PrincipalDetails implements UserDetails{
 		// TODO Auto-generated method stub
 		return true;
 	}
+
 }
