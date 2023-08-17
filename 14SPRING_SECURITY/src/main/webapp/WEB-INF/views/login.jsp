@@ -9,15 +9,13 @@
 <body>
 <h1>MYLOGIN</h1>
 
-
-
-<form action="${pageContext.request.contextPath}/login" method="post">
-	ID : <input name = "username"><br/>
-	PW : <input name = "password" type = "password"><br/>
+<form action="${pageContext.request.contextPath}/login" method="post"> 
+	ID : <input name="username"><br/>
+	PW : <input name="password" type="password"><br/>
 	<input type="submit" />
 </form>
+<div>${msg}</div>
+<div>${param.error}</div>
 
-<div>${msg }</div>
-<div>${param.error }</div>
 </body>
 </html>

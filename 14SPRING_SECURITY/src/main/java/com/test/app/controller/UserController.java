@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @Slf4j
 public class UserController {
-
+	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
@@ -25,25 +25,22 @@ public class UserController {
 	public void join_get() {
 		log.info("GET /join");
 	}
-	
+
 	@PostMapping("/join")
 	public String join_post(UserDto dto) {
-		log.info("POST /join" + dto);
+		log.info("POST /join "+dto);
 		
-//		01
+		//01
 		
-//		02
+		//02
 		
-//		03
+		//03
 		dto.setRole("ROLE_USER");
-		dto.setPassword(passwordEncoder.encode(dto.getPassword()));
-//		04
-		return  " login?msg=Join_성공!";
+		dto.setPassword( passwordEncoder.encode(dto.getPassword()) );
+		userMapper.insert(dto);
 		
-		
-		
-		
-		
+		//04
+		return "redirect:login?msg=Join_Success!";
 		
 	}
 }
