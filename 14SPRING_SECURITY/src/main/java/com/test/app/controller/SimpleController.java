@@ -19,6 +19,8 @@ public class SimpleController {
 		System.out.println("authorities : " + authentication.getAuthorities());
 		System.out.println("detail : " + authentication.getDetails());
 		System.out.println("credential : " + authentication.getCredentials());
+		
+		
 	}
 	
 	@GetMapping("/member")
