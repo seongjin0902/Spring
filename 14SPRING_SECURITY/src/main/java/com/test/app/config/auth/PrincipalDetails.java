@@ -8,9 +8,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.test.app.domain.dto.UserDto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class PrincipalDetails implements UserDetails{
 	
 	
@@ -21,7 +25,6 @@ public class PrincipalDetails implements UserDetails{
 		Collection<GrantedAuthority> collection = new ArrayList();
 		
 		collection.add(new GrantedAuthority() {
-
 			@Override
 			public String getAuthority() {
 				return user.getRole();

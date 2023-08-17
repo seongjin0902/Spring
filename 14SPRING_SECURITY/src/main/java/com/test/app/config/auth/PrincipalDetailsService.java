@@ -24,7 +24,8 @@ public class PrincipalDetailsService implements UserDetailsService {
 		if(dto == null)
 			return null;
 		
-		return new;
+		return new PrincipalDetails(dto);
+	
 	}
 
 }
