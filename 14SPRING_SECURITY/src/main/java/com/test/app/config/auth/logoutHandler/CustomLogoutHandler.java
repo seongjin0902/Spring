@@ -1,4 +1,4 @@
-package com.test.app.config.auth;
+package com.test.app.config.auth.logoutHandler;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

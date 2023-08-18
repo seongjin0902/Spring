@@ -12,10 +12,20 @@
 <form action="${pageContext.request.contextPath}/login" method="post"> 
 	ID : <input name="username"><br/>
 	PW : <input name="password" type="password"><br/>
+	
+	<div>
+		<input type="checkbox" name="remember-me" id="remember-me" />
+		<label for="remember-me">로그인 상태를 유지</label>
+	</div>
+	
 	<input type="submit" />
 </form>
+
+<a href="${pageContext.request.contextPath } /join">회원가입</a>
+
 <div>${msg}</div>
 <div>${param.error}</div>
+<div>${param.msg}</div>
 
 </body>
 </html>

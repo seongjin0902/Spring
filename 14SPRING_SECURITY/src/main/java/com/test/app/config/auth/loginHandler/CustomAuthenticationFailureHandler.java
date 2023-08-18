@@ -1,4 +1,4 @@
-package com.test.app.config.auth;
+package com.test.app.config.auth.loginHandler;
 
 import java.io.IOException;
 
